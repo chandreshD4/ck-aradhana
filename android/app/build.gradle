@@ -1,10 +1,26 @@
 plugins {
     id "com.android.application"
     id "org.jetbrains.kotlin.android"
+    id "dev.flutter.flutter-gradle-plugin"
 }
 
-// यह लाइन कोटलिन कम्पाइलर को सीधे फ्लटर की 'io.flutter' क्लासेस से जोड़ती है
-apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) {
+    flutterVersionCode = '1'
+}
+
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) {
+    flutterVersionName = '1.0'
+}
 
 android {
     namespace "com.example.ck_aradhana"
@@ -23,8 +39,8 @@ android {
         applicationId "com.example.ck_aradhana"
         minSdk 21
         targetSdk 34
-        versionCode 1
-        versionName "1.0"
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
     }
 
     buildTypes {
@@ -36,10 +52,6 @@ android {
     }
 }
 
-flutter {
-    source '../..'
-}
-
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.24"
+    // आधुनिक फ्लटर प्लगइन सब कुछ खुद बैकएंड पर हैंडल कर लेगा
 }
