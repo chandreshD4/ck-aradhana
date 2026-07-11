@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- फ्लटर ऐप शुरू होने से पहले दिखने वाली थीम -->
-    <style name="LaunchTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    <!-- फ्लटर ऐप शुरू होने से पहले दिखने वाली बैकग्राउंड थीम -->
+    <style name="LaunchTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:windowBackground">@drawable/launch_background</item>
     </style>
-    <!-- ऐप शुरू होने के बाद की मुख्य थीम -->
-    <style name="NormalTheme" parent="Theme.AppCompat.Light.NoActionBar">
+    
+    <!-- ऐप लोड होने के बाद की मुख्य थीम -->
+    <style name="NormalTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
         <item name="android:windowBackground">?android:colorBackground</item>
     </style>
 </resources>
