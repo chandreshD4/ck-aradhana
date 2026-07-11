@@ -110,7 +110,7 @@ class _DownloadScreenState extends State<DownloadScreen> {
           "x-rapidapi-key": _apiKey,
           "x-rapidapi-host": _apiHost
         },
-      );
+      ).timeout(const Duration(seconds: 15));
       
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
@@ -150,7 +150,7 @@ class _DownloadScreenState extends State<DownloadScreen> {
     } catch (e) {
       setState(() {
         _isLoading = false;
-        _statusMessage = "❌ કોઈ ભૂલ આવી: $e";
+        _statusMessage = "❌ કોઈ ભૂલ આવી: ઇન્ટરનેટ કનેક્શન તપાસો!";
       });
     }
   }
