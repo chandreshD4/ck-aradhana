@@ -23,12 +23,6 @@ jobs:
         with:
           channel: 'stable'
 
-      # पूरे एंड्रॉइड डायरेक्टरी में छिपी सभी पुरानी .java फ़ाइलों का पक्का इलाज (Complete Wipeout)
-      - name: Force Clean All Java Files
-        run: |
-          find android/ -name "*.java" -type f -delete || true
-          flutter clean
-
       - name: Install Dependencies
         run: flutter pub get
 
