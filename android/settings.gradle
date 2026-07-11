@@ -31,3 +31,14 @@ plugins {
 }
 
 include ":app"
+
+// यह जादुई लाइन आपके सभी 17 प्लगइन्स को ग्रैडल के साथ जोड़ देगी
+def localPropertiesFile = new File(settingsDir, "local.properties")
+def properties = new Properties()
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader("UTF-8") { reader -> properties.load(reader) }
+}
+def flutterSdkPath = properties.getProperty("flutter.sdk") ?: System.getenv("FLUTTER_ROOT")
+if (flutterSdkPath != null) {
+    apply from: "$flutterSdkPath/packages/flutter_tools/gradle/app_plugin_loader.gradle"
+}
