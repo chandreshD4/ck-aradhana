@@ -53,6 +53,5 @@ android {
 }
 
 dependencies {
-    // कोटलिन कम्पाइलर को 'io.flutter' ढूंढने में मदद करने के लिए मुख्य एम्बेडिंग डिपेंडेंसी
-    implementation "io.flutter:flutter_embedding_release:1.0.0-+"
+    // यहाँ किसी बाहरी मैन्युअल 'io.flutter' एम्बेडिंग की ज़रूरत नहीं है, फ्लटर प्लगइन इसे खुद हैंडल करेगा
 }
