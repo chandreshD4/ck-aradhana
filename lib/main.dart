@@ -110,7 +110,7 @@ class _DownloadScreenState extends State<DownloadScreen> {
           "x-rapidapi-key": _apiKey,
           "x-rapidapi-host": _apiHost
         },
-      ).timeout(const Duration(seconds: 15));
+      ).timeout(const Duration(seconds: 20));
       
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
@@ -132,25 +132,25 @@ class _DownloadScreenState extends State<DownloadScreen> {
               _statusMessage = "✅ 'RajuBhai' ફોલ્ડરમાં સફળતાપૂર્વક સેવ થઈ ગયું!";
               _playSuccessAudio();
             } else {
-              _statusMessage = "❌ ડાઉનલોડ ફેલ થયું! વીઆઈપી લિમિટ તપાસો.";
+              _statusMessage = "❌ ડાઉનલોડ ફેલ થયું! ડાઉનલોડ લિંક એક્સપાયર થઈ ગઈ છે.";
             }
           });
         } else {
           setState(() {
             _isLoading = false;
-            _statusMessage = "❌ લિંક મેળવવામાં સમસ્યા આવી અથવા લિમિટ પૂરી થઈ ગઈ છે!";
+            _statusMessage = "❌ API એરર: વિડિઓ ડેટા મળ્યો નથી (લિમિટ પૂરી થઈ હોઈ શકે).";
           });
         }
       } else {
         setState(() {
           _isLoading = false;
-          _statusMessage = "❌ સર્વર એરર: તમારી મંથલી લિમિટ પૂરી થઈ ગઈ લાગે છે!";
+          _statusMessage = "❌ સર્વર રિસ્પોન્સ એરર: Code ${response.statusCode} (તમારી API કી લિમિટ પૂરી થઈ ગઈ છે)";
         });
       }
     } catch (e) {
       setState(() {
         _isLoading = false;
-        _statusMessage = "❌ કોઈ ભૂલ આવી: ઇન્ટરનેટ કનેક્શન તપાસો!";
+        _statusMessage = "❌ સિસ્ટમ એરર: ${e.toString().split('\n')[0]}";
       });
     }
   }
