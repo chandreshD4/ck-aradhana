@@ -23,6 +23,13 @@ jobs:
         with:
           channel: 'stable'
 
+      # गिटहब सर्वर पर छुपे हुए पुराने v1 जावा फोल्डर को हमेशा के लिए साफ़ करना
+      - name: Clean Old Android Files
+        run: |
+          rm -rf android/app/src/main/java
+          rm -rf android/app/src/main/kotlin/com/example/ckaradhana
+          flutter clean
+
       - name: Install Dependencies
         run: flutter pub get
 
