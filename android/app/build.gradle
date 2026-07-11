@@ -1,0 +1,14 @@
+plugins {
+    id 'com.android.application'
+}
+android {
+    compileSdkVersion 33
+    namespace "com.example.ck_aradhana"
+    defaultConfig {
+        applicationId "com.example.ck_aradhana"
+        minSdkVersion 21
+        targetSdkVersion 33
+        versionCode 1
+        versionName "1.0"
+    }
+}
