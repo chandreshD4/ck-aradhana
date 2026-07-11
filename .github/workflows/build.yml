@@ -23,62 +23,11 @@ jobs:
         with:
           channel: 'stable'
 
-      - name: Create Fresh Valid Project Structure
-        run: |
-          cd ..
-          flutter create --org com.example --project-name ck_aradhana fresh_project
-          rm -rf fresh_project/lib fresh_project/assets fresh_project/pubspec.yaml
-          cp -r ck-aradhana/lib fresh_project/lib
-          cp -r ck-aradhana/assets fresh_project/assets
-          
-          # सही pubspec.yaml तैयार करना
-          cat << 'INNER_EOF' > fresh_project/pubspec.yaml
-          name: ck_aradhana
-          description: "Aaradhana VIP Downloader App"
-          publish_to: 'none'
-          version: 1.0.0+1
-          environment:
-            sdk: '>=3.0.0 <4.0.0'
-          dependencies:
-            flutter:
-              sdk: flutter
-            http: ^1.1.0
-            permission_handler: ^11.0.0
-            audioplayers: ^6.0.0
-          dev_dependencies:
-            flutter_test:
-              sdk: flutter
-            flutter_lints: ^3.0.0
-          flutter:
-            uses-material-design: true
-            assets:
-              - assets/profile.png
-              - assets/raju_bhai.mp3
-              - assets/icon.png
-          INNER_EOF
-          
-          # आइकॉन को सही एंड्रॉइड फोल्डर में सेट करना
-          cp fresh_project/assets/icon.png fresh_project/android/app/src/main/res/mipmap-hdpi/ic_launcher.png
-          cp fresh_project/assets/icon.png fresh_project/android/app/src/main/res/mipmap-mdpi/ic_launcher.png
-          cp fresh_project/assets/icon.png fresh_project/android/app/src/main/res/mipmap-xhdpi/ic_launcher.png
-          cp fresh_project/assets/icon.png fresh_project/android/app/src/main/res/mipmap-xxhdpi/ic_launcher.png
-          cp fresh_project/assets/icon.png fresh_project/android/app/src/main/res/mipmap-xxxhdpi/ic_launcher.png
-          
-          # नाम को गुजराती में बदलना
-          sed -i 's/android:label="ck_aradhana"/android:label="આરાધના Downloader VIP"/' fresh_project/android/app/src/main/AndroidManifest.xml
-          
-          # पुराने फोल्डर को नए परफेक्ट प्रोजेक्ट से बदल देना
-          rm -rf ck-aradhana/*
-          cp -r fresh_project/* ck-aradhana/
-          cp -r fresh_project/.github ck-aradhana/ || true
-
       - name: Install Dependencies
-        run: |
-          flutter pub get
+        run: flutter pub get
 
       - name: Build APK
-        run: |
-          flutter build apk --release
+        run: flutter build apk --release
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
