@@ -1,0 +1,11 @@
+# Flutter-plugin generated files
+android/app/src/main/java/io/flutter/plugins/GeneratedPluginRegistrant.java
+android/.gradle/
+android/app/src/main/java/io/flutter/plugins/
+
+# Regular Flutter ignores
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+build/
