@@ -1,15 +1,14 @@
-plugins {
-    id "com.android.application"
-    id "org.jetbrains.kotlin.android"
-    id "dev.flutter.flutter-gradle-plugin"
-}
-
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
     localPropertiesFile.withReader('UTF-8') { reader ->
         localProperties.load(reader)
     }
+}
+
+def flutterRoot = localProperties.getProperty('flutter.sdk')
+if (flutterRoot == null) {
+    flutterRoot = System.getenv('FLUTTER_ROOT')
 }
 
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
@@ -21,6 +20,10 @@ def flutterVersionName = localProperties.getProperty('flutter.versionName')
 if (flutterVersionName == null) {
     flutterVersionName = '1.0'
 }
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
     namespace "com.example.ck_aradhana"
@@ -52,10 +55,6 @@ android {
     }
 }
 
-flutter {
-    source '..'
-}
-
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:2.0.20"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:1.9.24"
 }
